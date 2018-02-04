@@ -14,7 +14,9 @@
 + 组件封装
 + slot
 + 组件通讯
-> 1. 父子通讯：父 ==> 子 用props     子 ==> 父 用event
-> 2. 兄弟铜须：简单用bus，负责用vuex
-> 3. vuex
-> 4. slot
+ 1. 父子通讯：父 ==> 子 用props     子 ==> 父 用event
+ 2. 兄弟铜须：简单用bus，负责用vuex
+ 3. vuex
+ 4. slot
+
+
