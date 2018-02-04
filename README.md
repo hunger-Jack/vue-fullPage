@@ -1,4 +1,4 @@
-# 使用vue做一个全屏轮播的demo，使用鼠标滑轮触发轮播，监听wheel事件，通过deltaY判断往上滑动还是往下滑动。
+使用vue做一个全屏轮播的demo，使用鼠标滑轮触发轮播，监听wheel事件，通过deltaY判断往上滑动还是往下滑动。
 # 容易出错的地方
 + transition-group使用v-for的时候必须写上key
 + 滑动到第一个或者最后一个再往下或者往上滑动会出现空白，这时候要分别对向上或者向下做判断，如果是是最后一个或者第一个直接return
@@ -10,12 +10,13 @@
 + transition-group: tag name
 + transition js hook
 + transitioned事件监听
++ transitioned事件监听
 + 组件封装
 + slot
 + 组件通讯
-	1. 父子通讯：父 ==> 子 用props     子 ==> 父 用event
-	2. 兄弟通讯：简单用bus，负责用vuex
-	3. vuex
-	4. slot
+	+ 父子通讯：父 ==> 子 用props     子 ==> 父 用event
+	+ 兄弟通讯：简单用bus，负责用vuex
+	+ vuex
+	+ slot
 
 
