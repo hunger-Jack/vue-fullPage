@@ -10,7 +10,6 @@
 + transition-group: tag name
 + transition js hook
 + transitioned事件监听
-+ transitioned事件监听
 + 组件封装
 + slot
 + 组件通讯
