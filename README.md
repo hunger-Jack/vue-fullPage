@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 使用vue做一个全屏轮播的demo，使用鼠标滑轮触发轮播，监听wheel事件，通过deltaY判断往上滑动还是往下滑动。
 # 容易出错的地方
 + transition-group使用v-for的时候必须写上key
@@ -18,3 +19,7 @@
 > 2. 兄弟铜须：简单用bus，负责用vuex
 > 3. vuex
 > 4. slot
+=======
+# vue-fullPage
+vue实现的全屏轮播demo
+>>>>>>> 0611e2e3ef6228c4c950f924ca6a181ad7965a02
