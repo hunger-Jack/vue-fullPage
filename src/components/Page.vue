@@ -46,7 +46,6 @@
     },
     watch: {
       curIndex() {
-        console.log(this.curIndex)
         if (this.curIndex === this.slotIndex - 1) {
           this.timerCode = setInterval(this.addCodes, 100)
           this.timerCursor = setInterval(this.change, 100)

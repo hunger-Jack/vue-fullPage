@@ -1,7 +1,7 @@
 <template>
   <transition-group tag="div" :name="name" mode="in-out" type="transition" @enter="enter" @leave="leave">
-    <div class="page"  v-for="(list,index) in pages" :style="{'background-color':bgColor && bgColor[index] ? bgColor[index] : baseBgc}" :key="index" @wheel="wheelScroll($event)"
-      v-show="index === curIndex" @transitionend="end">
+    <div class="page" v-for="(list,index) in pages" :style="{'background-color':bgColor && bgColor[index] ? bgColor[index] : baseBgc}"
+      :key="index" @wheel="wheelScroll($event)" v-show="index === curIndex" @transitionend="end">
       {{list}}
       <slot v-if="index+1 === slotIndex" :curIndex="curIndex" :name="'slot'+slotIndex" v-for="slotIndex in pages" :slotIndex="slotIndex"></slot>
     </div>
@@ -18,25 +18,28 @@
         canWheel: true,
         count: 0,
         timer: null,
-        status: ''
       }
     },
     props: {
-        bgColor: {
-            type: Array
-        },
-        baseBgc: {
-            default: 'gray'
-        },
-        pages: {
-            type: Number,
-            required: true
-        }
+      bgColor: {
+        type: Array
+      },
+      baseBgc: {
+        default: 'gray'
+      },
+      pages: {
+        type: Number,
+        required: true
+      }
     },
     methods: {
       wheelScroll(e) {
-          if (!this.canWheel) {return}
-          this.canWheel = false
+        if (!this.canWheel) {
+          return
+        }
+        this.canWheel = false
+        this.timer = null
+        this.timer = setTimeout(() => {
           if (e.deltaY > 0) {
             this.name = 'down'
             if (this.curIndex === this.pages - 1) {
@@ -55,19 +58,23 @@
             }
             this.curIndex--;
           }
+        }, 800)
+
       },
+
       end() {
         this.count++;
-        if (this.count%2 === 0) {//解决有时候滚动时页面卡死现象,好像还是没有解决问题
+        if (this.count % 2 === 0) {
           this.canWheel = true
-           this.status = 'transitioned'
         }
       },
-      enter(el,done) {
-        this.status = 'enter'
+      // 当只使用javasript过渡时，在enter和leave中，回调函数done是必须的，等元素的过渡或动画执行完毕后执行done回调
+      // 这里我们使用了css过渡，done可以不执行
+      enter() {
+        this.canWheel = true
       },
-      leave(el,done) {
-        this.status = 'leave'
+      leave() {
+        this.canWheel = true
       }
     }
   }
