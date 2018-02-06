@@ -1,7 +1,10 @@
 <template>
-  <transition-group tag="div" :name="name" mode="in-out" type="transition">
+  <transition-group tag="div" :name="name" mode="in-out" type="transition" @enter="enter" @leave="leave">
     <div class="page"  v-for="(list,index) in pages" :style="{'background-color':bgColor && bgColor[index] ? bgColor[index] : baseBgc}" :key="index" @wheel="wheelScroll($event)"
-      v-show="index === curIndex" @transitionend="end">{{list}}</div>
+      v-show="index === curIndex" @transitionend="end">
+      {{list}}
+      <slot v-if="index+1 === slotIndex" :curIndex="curIndex" :name="'slot'+slotIndex" v-for="slotIndex in pages" :slotIndex="slotIndex"></slot>
+    </div>
   </transition-group>
 </template>
 
@@ -14,7 +17,8 @@
         name: '',
         canWheel: true,
         count: 0,
-        timer: null
+        timer: null,
+        status: ''
       }
     },
     props: {
@@ -53,11 +57,17 @@
           }
       },
       end() {
-        console.log(1111)
         this.count++;
-        if (this.count%2 === 0) {//解决有时候滚动时页面卡死现象
+        if (this.count%2 === 0) {//解决有时候滚动时页面卡死现象,好像还是没有解决问题
           this.canWheel = true
+           this.status = 'transitioned'
         }
+      },
+      enter(el,done) {
+        this.status = 'enter'
+      },
+      leave(el,done) {
+        this.status = 'leave'
       }
     }
   }

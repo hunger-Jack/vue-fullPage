@@ -25,7 +25,11 @@
 
 <body>
   <div id="app">
-		<Full-page :pages="5" :bg-color="bgColor"></Full-page>
+		<Full-page :pages="5" :bg-color="bgColor">
+      <template slot-scope="props" slot="slot1">
+        <page :cur-index="props.curIndex" :slot-index="props.slotIndex"></page>
+      </template>
+    </Full-page>
   </div>
   <!-- built files will be auto injected -->
 </body>
